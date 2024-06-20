@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+model Mykart {
+  id            String @id
+  itemName      String
+  price         Float
+  productNumber String
+  userId        String
+  User          User   @relation(fields: [userId], references: [id])
+}
+
+model Shoes {
+  id          String   @id
+  name        String
+  price       Decimal
+  description String
+  image1      String
+  image2      String
+  image3      String
+  image4      String
+  imag5       String
+  createAt    DateTime @default(now())
+  updateAt    DateTime
+}
+
+model User {
+  id        String   @id
+  name      String
+  email     String   @unique
+  address   String
+  password  String
+  createAt  DateTime @default(now())
+  updatedAt DateTime
+  status    author   @default(CUSTOMER)
+  Mykart    Mykart[]
+}
+
+enum author {
+  ADMIN
+  CUSTOMER
+  SELLER
+}
