@@ -5,14 +5,15 @@ const prisma = new PrismaClient();
 
 export const createUsers = async (req: Request, res: Response) => {
     try {
-        const { name, email, password } = req.body as {
+        const { name, email, password ,address} = req.body as {
             name: string;
             email: string;
             password: string;
+            address:string
         };
 
         // Check if all required fields are present
-        if (!name || !email || !password) {
+        if (!name || !email || !password || !address) {
             throw new Error("Name, email, or password is missing");
         }
 
@@ -21,6 +22,7 @@ export const createUsers = async (req: Request, res: Response) => {
                 name: name,
                 email: email,
                 password: password,
+                address:address
             } as Prisma.UserCreateInput,
         });
 
