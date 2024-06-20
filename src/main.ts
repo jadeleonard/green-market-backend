@@ -3,11 +3,15 @@ import dotenv from 'dotenv';
 import { getAllShoes } from './contollers/getShoes.Controller'
 import { getUsers } from './contollers/getUsers.Controller'
 import {createUsers} from './contollers/createUsers.Controller'
+import cors from 'cors'
 const app = express();
 const port = process.env.PORT || 3001;
 
 dotenv.config();
 
+app.use(cors({
+  origin:'*'
+}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
