@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 import cors from 'cors'
 import { GetNavbarController } from './contollers/getNavbar.controller';
+import { GetHeroController } from './contollers/getHero.controller';
 const app = express();
 const port = process.env.PORT || 3001;
 
@@ -16,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get('/navbar',GetNavbarController);
-
+app.get('/hero',GetHeroController);
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
