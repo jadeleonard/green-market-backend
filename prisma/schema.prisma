@@ -73,6 +73,36 @@ model navbardata {
   id       String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
 }
 
+model aboutus {
+  user_id     String       @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  title       String
+  description String
+  jobseekers  jobseekers[]
+  agencies    agencies[]
+}
+
+model agencies {
+  user_id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  value          String?  @db.VarChar(500)
+  description    String?  @db.VarChar(500)
+  aboutus        aboutus? @relation(fields: [aboutusUser_id], references: [user_id])
+  aboutusUser_id String?  @db.Uuid
+}
+
+model jobseekers {
+  user_id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  title          String?  @db.VarChar(500)
+  description    String?  @db.VarChar(500)
+  aboutus        aboutus? @relation(fields: [aboutusUser_id], references: [user_id])
+  aboutusUser_id String?  @db.Uuid
+}
+
+model userchoices {
+  user_id     String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  title       String? @db.VarChar(500)
+  description String? @db.VarChar(500)
+}
+
 enum author {
   ADMIN
   AGENCY
