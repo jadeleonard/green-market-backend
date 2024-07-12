@@ -25,3 +25,5 @@ app.get('/about',GetAboutController)
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+export {app}
