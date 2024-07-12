@@ -2,7 +2,7 @@ import prisma from "../lib/prisma";
 import { Request,Response } from "express";
 
 
-export  async function GetAboutController(req:Request,res:Response) {
+export async function GetAboutController(req:Request,res:Response) {
     try {
         
 
