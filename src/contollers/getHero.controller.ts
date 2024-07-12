@@ -1,7 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma";
 import { Request,Response } from "express";
 
-const prisma = new PrismaClient();
+
 
 export const GetHeroController = async(req:Request,res:Response) =>{
 

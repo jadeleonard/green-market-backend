@@ -3,9 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DATABASE_URL_UNPOOLED")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model agency {
@@ -77,24 +76,24 @@ model aboutus {
   user_id     String       @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   title       String
   description String
-  jobseekers  jobseekers[]
   agencies    agencies[]
+  jobseekers  jobseekers[]
 }
 
 model agencies {
   user_id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   value          String?  @db.VarChar(500)
   description    String?  @db.VarChar(500)
-  aboutus        aboutus? @relation(fields: [aboutusUser_id], references: [user_id])
   aboutusUser_id String?  @db.Uuid
+  aboutus        aboutus? @relation(fields: [aboutusUser_id], references: [user_id])
 }
 
 model jobseekers {
   user_id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   title          String?  @db.VarChar(500)
   description    String?  @db.VarChar(500)
-  aboutus        aboutus? @relation(fields: [aboutusUser_id], references: [user_id])
   aboutusUser_id String?  @db.Uuid
+  aboutus        aboutus? @relation(fields: [aboutusUser_id], references: [user_id])
 }
 
 model userchoices {

@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma";
 import { Response,Request } from "express";
-const prisma = new PrismaClient();
+
 
 
 export const  GetNavbarController =  async(req:Request,res:Response) : Promise<void> => {
