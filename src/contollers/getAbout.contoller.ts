@@ -7,6 +7,9 @@ export async function GetAboutController(req:Request,res:Response) {
         
 
         const response = await prisma.aboutus.findMany();
+        if(!response){
+            throw new Error("error")
+        }
         res.status(201).json(response)
     } catch (error) {
         res.status(500).json({error:"Error"})
